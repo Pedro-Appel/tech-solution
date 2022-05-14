@@ -1,0 +1,27 @@
+<section class="container" >
+  <form class="formulario" (ngSubmit)="cadastrar()">
+
+    <h2 class="formulario__titulo" >Novo Produto</h2>
+
+    <div class="form-field">
+      <label class="form-field__label" for="descricao">Nome</label>
+      <input class="form-field__input" id="descricao" type="text" [(ngModel)]="name" name="descricao">
+    </div>
+
+    <div class="form-field">
+      <label class="form-field__label" for="desenvolvedor">Fornecedor</label>
+      <input class="form-field__input" id="desenvolvedor" type="text" [(ngModel)]="fornecedor" name="desenvolvedor">
+    </div>
+
+    <div class="form-field">
+      <label class="form-field__label" for="lancamento">Preço</label>
+      <input class="form-field__input" id="lancamento" type="number" [(ngModel)]="price" name="lancamento">
+    </div>
+
+
+    <div class="botao-wrapper">
+
+      <button type="submit" class="botao">Cadastrar</button>
+    </div>
+  </form>
+</section>

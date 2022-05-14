@@ -1,0 +1,20 @@
+<section class="container">
+  <h2 class="titulo">Jogos</h2>
+    <table class="tabela">
+      <thead class="tabela__cabecalho">
+        <th class="tabela__cabecalho__conteudo">Nome</th>
+        <th class="tabela__cabecalho__conteudo">Lancamento</th>
+        <th class="tabela__cabecalho__conteudo">Nota</th>
+      </thead>
+      <tbody *ngIf="products.length > 0; else listaVazia">
+        <tr class="tabela__linha" *ngFor="let game of games">
+          <td class="tabela__conteudo">{{products?.name}}</td>
+          <td class="tabela__conteudo">{{products?.fornecedor}}</td>
+          <td class="tabela__conteudo">{{products?.price| currency}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <ng-template #listaVazia>
+      <p>Nenhum produto cadastrado</p>
+    </ng-template>
+  </section>
