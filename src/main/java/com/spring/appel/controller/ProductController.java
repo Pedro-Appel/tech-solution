@@ -32,9 +32,12 @@ public class ProductController {
 	private ProductService service;
 
 	@PostMapping
-	public ProductResponseDTO createProduct(@RequestBody CreateProductDTO request) {
+	public ResponseEntity<ProductResponseDTO> createProduct(@RequestBody CreateProductDTO request) {
 		log.info("Creating Product");
-		return service.createProduct(request);
+		HttpHeaders headers = new HttpHeaders();
+		headers.add(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "*");
+
+		return ResponseEntity.ok().headers(headers).body(service.createProduct(request));
 	}
 
 	@GetMapping()
@@ -44,7 +47,7 @@ public class ProductController {
 		Page<Product> gameList = service.listProducts(paginacao);
 
 		HttpHeaders headers = new HttpHeaders();
-		headers.add(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "http://localhost:4200");
+		headers.add(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "*");
 
 		return ResponseEntity.ok().headers(headers).body(gameList);
 	}

@@ -27,7 +27,6 @@ public class UserServiceImpl implements UserService {
 		user.setName(request.getUsername());
 		try {
 			user = repo.saveAndFlush(user);
-			response.setUid(user.getUid().toString());
 			response.setMessage("Usuario criado com sucesso");
 			response.setRetCode(10000);
 		} catch (Exception e) {
@@ -42,7 +41,7 @@ public class UserServiceImpl implements UserService {
 	public BaseResponseDTO signIn(CreateUserDTO request) {
 
 		BaseResponseDTO response = new BaseResponseDTO();
-		User user = repo.findByName(request.getUsername());
+		User user = repo.findByName(request.getUsername()).get();
 		
 		if(user.getPassword().equals(request.getPassword())) response.setRetCode(200);
 		
@@ -69,7 +68,7 @@ public class UserServiceImpl implements UserService {
 
 			response.setMessage("Usuario encontrado com sucesso");
 			response.setRetCode(10000);
-			response.setName(user.getName());
+			response.setName(user.getUsername());
 			response.setUid(id.toString());
 
 		} catch (Exception e) {

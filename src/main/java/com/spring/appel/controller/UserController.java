@@ -1,6 +1,9 @@
 package com.spring.appel.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.spring.appel.model.Product;
 import com.spring.appel.model.User;
 import com.spring.appel.model.dto.BaseResponseDTO;
 import com.spring.appel.model.dto.user.CreateUserDTO;
@@ -27,15 +31,24 @@ public class UserController {
 	private UserService service;
 
 	@PostMapping("/signon")
-	public UserResponseDTO signOn(@RequestBody CreateUserDTO request) {
+	public ResponseEntity<UserResponseDTO> signOn(@RequestBody CreateUserDTO request) {
 		log.info("Creating user");
-		return service.createUser(request);
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.add(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "http://localhost:4200");
+
+		return ResponseEntity.ok().headers(headers).body(service.createUser(request));
 	}
 	
 	@PostMapping("/signin")
-	public BaseResponseDTO singIn(@RequestBody CreateUserDTO request) {
+	public ResponseEntity<BaseResponseDTO> singIn(@RequestBody CreateUserDTO request) {
+		
 		log.info("Authenticating user");
-		return service.signIn(request);
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.add(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "http://localhost:4200");
+
+		return ResponseEntity.ok().headers(headers).body(service.signIn(request));
 	}
 	
 	
