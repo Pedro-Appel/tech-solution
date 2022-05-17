@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>De Olho na Nota</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/album/">
 
@@ -34,7 +33,7 @@
 <main>
   <div class="album py-5 bg-light">
     <div class="container">
-      <h1>Jogos</h1>
+      <h1>Produtos</h1>
       <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 g-3" *ngIf="products.length > 0; else listaVazia">
         <div class="col" *ngFor="let product of products">
           <div class="card shadow-sm" >
@@ -59,7 +58,6 @@
 <footer class="text-muted py-5">
   <div class="container">
     <p class="float-end mb-1">
-      <a href="#">Back to top</a>
     </p>
     <p class="mb-1">TechSolution - All rights reserved 2022 ®</p>
   </div>

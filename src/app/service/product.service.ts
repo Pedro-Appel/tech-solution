@@ -10,6 +10,7 @@ export class ProductService {
   private urlBack = '/backend/product';
   private listDeProducts: Product[];
 
+
   constructor(private httpClient: HttpClient) {
     this.listDeProducts = [];
    }
@@ -23,14 +24,9 @@ export class ProductService {
   get jogos(){
     return this.listDeProducts;
   }
-  adicionar(product :Product): Observable<Product>{
-    return this.httpClient.post<Product>(this.urlBack, product,
-      {
-        headers:
-        {
-          'Access-Control-Allow-Origin': '*',
-          "Access-Control-Allow-Methods": "GET, OPTIONS, POST, PUT"
-        }
-      });
+  adicionar(product :Product, token: string): Observable<any>{
+    var myHeaders = new Headers;
+    myHeaders.append("content-type", "application/json")
+    return this.httpClient.post<any>(this.urlBack, product,{headers: {"content-type": "application/json", "Authorization": `Bearer ${token}`}})
   }
 }

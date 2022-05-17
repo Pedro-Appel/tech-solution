@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from '../model/product.model';
 import { ProductService } from '../service/product.service';
@@ -17,13 +17,15 @@ export class CreateProductComponent {
   public name: string;
   public fornecedor: string;
   public price: string;
+  @Input() public token: string = "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBUEkgVGVjaFNvbHV0aW9uIiwic3ViIjoiMTIzZTQ1NjctZTg5Yi0xMmQzLWE0NTYtNTU2NjQyNDQxMjY1IiwiaWF0IjoxNjUyODE1NTAwLCJleHAiOjE2NTI5MDE5MDB9.-_opfqjvsmCME0C0EGyYRCWtuvFF6fL72_Hf6ym2Oh4"
 
   cadastrar(){
     const vEmitir: Product = {name: this.name, fornecedor: this.fornecedor, price: this.price}
-    console.log(vEmitir)
-    this.service.adicionar(vEmitir).subscribe(resultado => {
+    console.log(this.token)
+
+    this.service.adicionar(vEmitir, this.token).subscribe(resultado => {
       console.log(resultado)
-      this.router.navigateByUrl('extrato')
+      this.router.navigateByUrl('productTable')
     })
   }
 }
