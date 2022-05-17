@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Product } from '../model/product.model';
+import { ProductService } from '../service/product.service';
 
 @Component({
   selector: 'app-product-table',
@@ -7,10 +8,13 @@ import { Product } from '../model/product.model';
   styleUrls: ['./product-table.component.scss']
 })
 export class ProductTableComponent implements OnInit {
-  @Input() public products: Product[] = [];
-  constructor() { }
 
-  ngOnInit(): void {
+  @Input() public products: Product[] = [];
+
+  constructor(private service: ProductService) { }
+
+  async ngOnInit(): Promise<void> {
+    this.products = await this.service.todosProdutos();
   }
 
 }

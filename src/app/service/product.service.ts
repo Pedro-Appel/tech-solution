@@ -7,14 +7,14 @@ import { Product } from '../model/product.model';
   providedIn: 'root'
 })
 export class ProductService {
-  private urlBack = 'http://localhost:8080/product';
+  private urlBack = '/backend/product';
   private listDeProducts: Product[];
 
   constructor(private httpClient: HttpClient) {
     this.listDeProducts = [];
    }
 
-  async todosJogos(): Promise<Product[]>{
+  async todosProdutos(): Promise<Product[]>{
     return await fetch(this.urlBack, {method: 'GET'})
     .then((res) => res.json())
     .then((res) => res.content)
@@ -24,6 +24,13 @@ export class ProductService {
     return this.listDeProducts;
   }
   adicionar(product :Product): Observable<Product>{
-    return this.httpClient.post<Product>(this.urlBack, product)
+    return this.httpClient.post<Product>(this.urlBack, product,
+      {
+        headers:
+        {
+          'Access-Control-Allow-Origin': '*',
+          "Access-Control-Allow-Methods": "GET, OPTIONS, POST, PUT"
+        }
+      });
   }
 }

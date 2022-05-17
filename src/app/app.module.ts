@@ -8,7 +8,8 @@ import { AppComponent } from './app.component';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { ProductTableComponent } from './product-table/product-table.component';
-import { CreateProductComponent } from './create-product/create-product.component'
+import { CreateProductComponent } from './create-product/create-product.component';
+import { LoginComponent } from './login/login.component'
 
 registerLocaleData(localePt, 'pt');
 
@@ -16,7 +17,8 @@ registerLocaleData(localePt, 'pt');
   declarations: [
     AppComponent,
     ProductTableComponent,
-    CreateProductComponent
+    CreateProductComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

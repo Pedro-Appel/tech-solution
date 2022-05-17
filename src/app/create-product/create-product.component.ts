@@ -9,6 +9,7 @@ import { ProductService } from '../service/product.service';
   styleUrls: ['./create-product.component.scss']
 })
 export class CreateProductComponent {
+
   @Output() aoCriar = new EventEmitter<any>();
 
   constructor(private service: ProductService, private router: Router) { }
